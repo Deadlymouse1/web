@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>
+		ScriptForm
+	</title>
+	
+	  <script type="text/javascript">
+
+			function validateForm(event) {
+			   	var number = document.forms["myForm"]["number"].value
+			   	var photo = document.forms["myForm"]["photo"].files[0].size
+			   	var photoname = document.forms["myForm"]["photo"].value.endsWith(".jpg")
+			   	var isWork = true;
+			   
+			    //check name
+			   	if(isNaN(number)){
+			   		alert("Name must be filled out");
+			   		isWork = false;
+        			
+        			}
+				//checkphoto
+				if (photo > 1024*1024){
+					isWork = false;
+					alert("SizePhoto must be filled out");
+        			
+        		}
+        		//checkphotoname
+				if(!photoname){
+					isWork = false;
+					alert("NamePhoto must be filled out");
+        			
+				}
+				if(!isWork){
+					event.preventDefault();
+				}
+				
+			}
+				
+
+
+	  </script>
+
+	<form name = "myForm" method="post" onsubmit="return validateForm(event)">
+		</head>
+		<body>
+			<p>Введите Имя</p>
+				<input type="text" name="username" required><br>
+				<input type="radio" name="Male" required>Мужчина</input><br>
+				<input type="radio" name="Male" required>Женщина</input><br>
+				<input type="text" name="number" isNumeric = "true" required></input><br>
+				<input type="date" name="brith-day" required></input><br>
+				<input type="file" name="photo" required></input><br>
+				<input type="password" name="password" minlength="8"  required></input><br>
+				<input type="reset" name="reset" value="Очистить" required></input><br>
+				<input type="submit" name="submit" value="Сохранить" required></input><br>
+		</body>
+	</form>
+	</html>
